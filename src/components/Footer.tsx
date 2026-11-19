@@ -33,7 +33,12 @@ export default function Footer() {
         </div>
       </div>
       <div className="mt-12 border-t border-white/15 py-5">
-        <div className="page">© 2026 GeoVigia Monitoramento Geotécnico. Todos os direitos reservados.</div>
+        <div className="page flex flex-wrap items-center justify-between gap-3">
+          <div>© 2026 GeoVigia Monitoramento Geotécnico. Todos os direitos reservados.</div>
+          <a href="#acesso-admin" className="text-xs text-white/45 hover:text-white/80">
+            Acesso do administrador
+          </a>
+        </div>
       </div>
     </footer>
   );

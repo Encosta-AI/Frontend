@@ -67,7 +67,7 @@ export default function RiskMap({ onRequest }: { onRequest: (p?: InspectionPrefi
       <div className="page">
         <h2 className="text-3xl md:text-4xl">Mapa</h2>
         <p className="mt-3 mb-8 max-w-2xl text-muted">
-          Pesquise por localidade, município ou tipo de estrutura. Clique no mapa para marcar a latitude e a longitude da vistoria.
+          Pesquise por localidade, município ou tipo de estrutura. Clique no mapa para marcar o ponto da vistoria.
         </p>
 
         <div role="search" className="grid gap-2 rounded border border-line bg-white p-2 shadow-sm md:grid-cols-[1.6fr_1fr_1fr]">
@@ -114,23 +114,22 @@ export default function RiskMap({ onRequest }: { onRequest: (p?: InspectionPrefi
                 <h3 className="flex items-center gap-2 text-xl"><FiMapPin className="text-brand" aria-hidden />{atual.nome}</h3>
                 <p className="mt-1 text-sm text-muted">
                   {atual.cidade} · {atual.tipo} · {atual.sensores} sensores ativos · última leitura {atual.leitura}
-                  {" · "}{atual.lat.toFixed(5)}, {atual.lng.toFixed(5)}
                 </p>
               </div>
-              <button className="btn btn-primary w-full sm:w-auto" onClick={() => onRequest({ local: atual.nome, cidade: atual.cidade, lat: atual.lat, lng: atual.lng })}>Solicitar vistoria neste local</button>
+              <button className="btn btn-primary w-full sm:w-auto" onClick={() => onRequest({ local: atual.nome, cidade: atual.cidade })}>Solicitar vistoria neste local</button>
             </>
           ) : clique ? (
             <>
               <div>
                 <h3 className="flex items-center gap-2 text-xl"><FiMapPin className="text-brand" aria-hidden />Ponto marcado no mapa</h3>
                 <p className="mt-1 text-sm text-muted">
-                  Latitude {clique.lat.toFixed(6)} · Longitude {clique.lng.toFixed(6)}. Esses valores entram no formulário de vistoria.
+                  Ponto marcado no mapa. Você pode solicitar a vistoria para este local.
                 </p>
               </div>
-              <button className="btn btn-primary w-full sm:w-auto" onClick={() => onRequest({ lat: clique.lat, lng: clique.lng })}>Solicitar vistoria neste ponto</button>
+              <button className="btn btn-primary w-full sm:w-auto" onClick={() => onRequest()}>Solicitar vistoria neste ponto</button>
             </>
           ) : (
-            <p className="text-muted">Selecione um ponto na lista ou clique no mapa para preencher a latitude e a longitude.</p>
+            <p className="text-muted">Selecione um ponto na lista ou clique no mapa para escolher o local da vistoria.</p>
           )}
         </div>
         {coords && <span className="sr-only">Coordenadas selecionadas: {coords.lat}, {coords.lng}</span>}

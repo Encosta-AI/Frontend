@@ -11,12 +11,14 @@ declare namespace L {
   interface Map {
     setView(center: [number, number], zoom: number): this;
     panTo(latlng: [number, number]): this;
+    fitBounds(latlngs: [number, number][], options?: { padding?: [number, number]; maxZoom?: number }): this;
     invalidateSize(): this;
     on(type: "click", fn: (e: LeafletMouseEvent) => void): this;
     remove(): void;
   }
   interface Layer {
     addTo(map: Map | LayerGroup): this;
+    remove(): void;
   }
   interface LayerGroup extends Layer {
     clearLayers(): this;

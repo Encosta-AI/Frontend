@@ -1,0 +1,1150 @@
+:root {
+  /* Paleta do site institucional Encosta Ai */
+  --navy: #0d345d;
+  --marca: #0457af;
+  --ceu: #0485fe;
+  --tinta: #10243a;
+  --tinta-2: #566b82;
+  --fundo: #f4f7fb;
+  --cartao: #ffffff;
+  --linha: #d9e3ee;
+  /* Níveis de risco */
+  --verde: #2e9e5b;
+  --amarelo: #e3b93c;
+  --laranja: #e8833a;
+  --vermelho: #d64545;
+  --texto-verde: #0f2a1d;
+  --texto-amarelo: #2e2406;
+  --texto-laranja: #2e1604;
+  --texto-vermelho: #ffffff;
+}
+
+.painel-app * {
+  box-sizing: border-box;
+}
+
+.painel-app h1,
+.painel-app h2,
+.painel-app h3 {
+  font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.painel-app {
+  margin: 0;
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  background: var(--fundo);
+  color: var(--tinta);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- topo ---------- */
+.painel-app .faixa-topo {
+  background: var(--navy);
+  color: #fff;
+  font-size: .78rem;
+  padding: 7px 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.painel-app .topo {
+  background: #fff;
+  color: var(--tinta);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 1px 3px rgba(13, 52, 93, .14);
+}
+
+.painel-app .topo-marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.painel-app .logo {
+  height: 38px;
+  width: auto;
+}
+
+.painel-app .topo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.painel-app .topo p {
+  margin: 2px 0 0;
+  color: var(--tinta-2);
+  font-size: .85rem;
+}
+
+.painel-app .topo-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: .85rem;
+  color: var(--tinta-2);
+}
+
+.painel-app .selo {
+  background: #fdf0d5;
+  color: #6b4300;
+  border: 1px solid var(--amarelo);
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: .78rem;
+}
+
+/* ---------- resumo ---------- */
+.painel-app .resumo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 14px 24px 0;
+}
+
+.painel-app .resumo .item {
+  border-radius: 4px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.painel-app .resumo .num {
+  font-size: 1.7rem;
+}
+
+.painel-app .resumo .rot {
+  font-size: .9rem;
+}
+
+.painel-app .verde {
+  background: var(--verde);
+  color: var(--texto-verde);
+}
+
+.painel-app .amarelo {
+  background: var(--amarelo);
+  color: var(--texto-amarelo);
+}
+
+.painel-app .laranja {
+  background: var(--laranja);
+  color: var(--texto-laranja);
+}
+
+.painel-app .vermelho {
+  background: var(--vermelho);
+  color: var(--texto-vermelho);
+}
+
+/* ---------- layout principal ---------- */
+.painel-app .layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 16px;
+  padding: 14px 24px 24px;
+  min-height: 0;
+}
+
+.painel-app .mapa-area {
+  position: relative;
+  min-height: 520px;
+}
+
+.painel-app #mapa {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  border: 1px solid var(--linha);
+  z-index: 0;
+}
+
+.painel-app .legenda {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 500;
+  background: rgba(255, 255, 255, .95);
+  border-radius: 4px;
+  padding: 6px 10px;
+  display: flex;
+  gap: 12px;
+  font-size: .8rem;
+  border: 1px solid var(--linha);
+}
+
+.painel-app .legenda span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.painel-app .ponto {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, .25);
+}
+
+.painel-app .lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  max-height: calc(100vh - 170px);
+  padding-right: 2px;
+}
+
+.painel-app .lateral h2 {
+  font-size: 1rem;
+  margin: 0 0 8px;
+}
+
+/* ---------- lista ---------- */
+.painel-app .lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.painel-app .lista li {
+  margin: 0;
+}
+
+.painel-app .cartao-encosta {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: var(--cartao);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+}
+
+.painel-app .cartao-encosta:hover {
+  border-color: var(--linha);
+}
+
+.painel-app .cartao-encosta[aria-pressed="true"] {
+  border-color: var(--marca);
+}
+
+.painel-app .cartao-encosta .ponto {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.painel-app .cartao-encosta .nome {
+  font-weight: 600;
+}
+
+.painel-app .cartao-encosta .local {
+  font-size: .8rem;
+  color: var(--tinta-2);
+}
+
+.painel-app .cartao-encosta .info {
+  flex: 1;
+  min-width: 0;
+}
+
+.painel-app .selo-nivel {
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.painel-app .selo-nivel.verde {
+  background: #dcf1e6;
+  color: #14573a;
+}
+
+.painel-app .selo-nivel.amarelo {
+  background: #fbeacb;
+  color: #6b4300;
+}
+
+.painel-app .selo-nivel.laranja {
+  background: #fde6d2;
+  color: #6b3205;
+}
+
+.painel-app .selo-nivel.vermelho {
+  background: #fbdcdc;
+  color: #8a1d1d;
+}
+
+/* ---------- detalhe ---------- */
+.painel-app .detalhe {
+  background: var(--cartao);
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+}
+
+.painel-app .detalhe h2 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.painel-app .detalhe .local {
+  color: var(--tinta-2);
+  font-size: .85rem;
+  margin: 2px 0 12px;
+}
+
+.painel-app .nivel-bloco {
+  border-radius: 4px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.painel-app .nivel-bloco .nivel {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.painel-app .nivel-bloco .conf {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.painel-app .nivel-bloco small {
+  display: block;
+  font-weight: 500;
+  font-size: .75rem;
+  opacity: .9;
+}
+
+.painel-app .barra {
+  height: 8px;
+  background: var(--linha);
+  border-radius: 4px;
+  margin: 8px 0 4px;
+  overflow: hidden;
+}
+
+.painel-app .barra>div {
+  height: 100%;
+  background: var(--marca);
+}
+
+.painel-app .aviso-limiar {
+  background: #fdf0d5;
+  border: 1px solid var(--amarelo);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: .82rem;
+  margin-top: 10px;
+}
+
+.painel-app .vars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  margin: 14px 0;
+}
+
+.painel-app .vars div {
+  font-size: .85rem;
+}
+
+.painel-app .vars b {
+  display: block;
+  font-size: 1rem;
+}
+
+.painel-app .vars span {
+  color: var(--tinta-2);
+  font-size: .75rem;
+}
+
+.painel-app .detalhe h3 {
+  font-size: .9rem;
+  margin: 6px 0;
+}
+
+.painel-app .linha-tempo {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 64px;
+}
+
+.painel-app .linha-tempo .barra-h {
+  flex: 1;
+  border-radius: 3px 3px 0 0;
+  min-width: 8px;
+}
+
+.painel-app .eixo-tempo {
+  display: flex;
+  justify-content: space-between;
+  font-size: .72rem;
+  color: var(--tinta-2);
+  margin-top: 4px;
+}
+
+/* ---------- formulários ---------- */
+.painel-app .painel-extra {
+  background: var(--cartao);
+  border-radius: 4px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+}
+
+.painel-app .painel-extra summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 4px 0;
+}
+
+.painel-app .form-sim,
+.painel-app .form-cad {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.painel-app .form-sim label,
+.painel-app .form-cad label {
+  font-size: .85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.painel-app .form-sim label:not(.check) {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.painel-app .form-sim label:not(.check) input {
+  grid-column: 1 / -1;
+}
+
+.painel-app .form-sim label output {
+  font-weight: 700;
+}
+
+.painel-app .form-sim .check {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.painel-app .form-cad input {
+  padding: 8px 10px;
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  font: inherit;
+  background: #fff;
+  color: var(--tinta);
+}
+
+.painel-app .form-cad input:focus {
+  border-color: var(--ceu);
+  outline: none;
+}
+
+.painel-app .duas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.painel-app button[type="submit"] {
+  background: var(--marca);
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  padding: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.painel-app button[type="submit"]:hover {
+  background: var(--navy);
+}
+
+.painel-app .resultado-sim {
+  margin-top: 12px;
+}
+
+.painel-app .dica {
+  font-size: .8rem;
+  color: var(--tinta-2);
+  margin: 0;
+}
+
+.painel-app :focus-visible {
+  outline: 3px solid var(--ceu);
+  outline-offset: 2px;
+}
+
+/* ---------- celular ---------- */
+@media (max-width: 900px) {
+  .painel-app .layout {
+    grid-template-columns: 1fr;
+    padding: 12px 16px 20px;
+  }
+
+  .painel-app .resumo {
+    grid-template-columns: 1fr 1fr;
+    padding: 12px 16px 0;
+  }
+
+  .painel-app .mapa-area {
+    min-height: 380px;
+  }
+
+  .painel-app .lateral {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .painel-app .topo {
+    padding: 12px 16px;
+  }
+}
+
+/* ---------- alerta e contagem regressiva ---------- */
+.painel-app .alerta {
+  margin: 14px 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.painel-app .alerta-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #fdeaea;
+  border: 2px solid var(--vermelho);
+  color: #5c1111;
+  border-radius: 4px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.painel-app .alerta-item.laranja {
+  background: #fff0e0;
+  border-color: var(--laranja);
+  color: #4a2606;
+}
+
+.painel-app .alerta-item b {
+  font-size: 1rem;
+}
+
+.painel-app .alerta-item .tempo {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.painel-app .ruptura {
+  margin-top: 12px;
+  border-radius: 4px;
+  border: 2px solid var(--navy);
+  padding: 10px 12px;
+}
+
+.painel-app .ruptura .rot {
+  font-size: .75rem;
+  color: var(--tinta-2);
+}
+
+.painel-app .ruptura .tempo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.painel-app .ruptura .detalhe-r {
+  font-size: .78rem;
+  color: var(--tinta-2);
+  margin: 4px 0 0;
+}
+
+.painel-app .ruptura.sem {
+  border-style: dashed;
+  border-color: var(--linha);
+}
+
+.painel-app .ruptura .reduzida {
+  color: #8a1d21;
+  font-weight: 700;
+  font-size: .85rem;
+  margin: 4px 0 0;
+}
+
+.painel-app .cartao-encosta .tempo-mini {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #8a1d21;
+  font-variant-numeric: tabular-nums;
+}
+
+.painel-app .botoes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.painel-app .botoes button {
+  background: var(--marca);
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  padding: 9px 12px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.painel-app .botoes button.sec {
+  background: transparent;
+  color: var(--marca);
+  border: 1px solid var(--marca);
+}
+
+@media (max-width: 900px) {
+  .painel-app .alerta {
+    margin: 12px 16px 0;
+  }
+}
+
+/* ---------- login do administrador ---------- */
+.painel-app.pagina-login {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: #f4f7fc;
+  background-image: linear-gradient(180deg, #e8eefb 0%, #f4f7fc 42%, #f7f8fd 100%);
+}
+
+.painel-app .login-fundo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.painel-app .login-predio {
+  position: absolute;
+  top: 8%;
+  left: 0;
+  height: 92%;
+  width: min(62vw, 760px);
+  object-fit: cover;
+  object-position: left center;
+  opacity: 0.85;
+}
+
+.painel-app .login-canto {
+  position: absolute;
+  display: block;
+}
+
+.painel-app .login-canto-esq {
+  top: 0;
+  left: 0;
+  width: clamp(128px, 22vw, 300px);
+  height: auto;
+}
+
+.painel-app .login-canto-dir {
+  right: 0;
+  bottom: 0;
+  width: clamp(168px, 30vw, 420px);
+  height: auto;
+}
+
+.painel-app.pagina-login>.dica {
+  position: relative;
+  z-index: 1;
+}
+
+.painel-app .voltar {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--tinta-2);
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.painel-app .voltar svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.painel-app .voltar:hover {
+  color: var(--navy);
+}
+
+.painel-app .login-area {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 446px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.painel-app .login-marca {
+  text-align: center;
+}
+
+.painel-app .login-logo {
+  display: block;
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.painel-app .login-logo-texto {
+  font: 700 2rem "Space Grotesk", sans-serif;
+  color: var(--navy);
+}
+
+.painel-app .login-marca p {
+  margin: 10px 0 0;
+  color: var(--tinta-2);
+  font-size: 1rem;
+}
+
+.painel-app .caixa-login {
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: 16px;
+  padding: 32px 40px 36px;
+  width: 100%;
+  box-shadow: 0 12px 32px rgba(13, 52, 93, .10);
+}
+
+.painel-app .selo-admin {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--marca);
+  background: #e6f0fb;
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+
+.painel-app .caixa-login h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.painel-app .caixa-login .sub {
+  margin: 4px 0 22px;
+  color: var(--tinta-2);
+  font-size: .9rem;
+}
+
+.painel-app #form-login label {
+  display: block;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 7px;
+}
+
+.painel-app .campo {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.painel-app .campo input {
+  width: 100%;
+  height: 48px;
+  padding: 0 44px 0 44px;
+  border: 1px solid var(--linha);
+  border-radius: 10px;
+  font: inherit;
+  font-size: .95rem;
+  color: var(--tinta);
+  background: #fff;
+}
+
+.painel-app .campo input::placeholder {
+  color: #8fa0b3;
+}
+
+.painel-app .campo input:focus {
+  outline: none;
+  border-color: var(--ceu);
+  box-shadow: 0 0 0 3px rgba(4, 133, 254, .18);
+}
+
+.painel-app .campo .ico,
+.painel-app .olho svg {
+  fill: none;
+  stroke: #64778c;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.painel-app .campo .ico {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.painel-app .olho {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.painel-app .olho svg {
+  width: 20px;
+  height: 20px;
+}
+
+.painel-app .olho:hover {
+  background: var(--fundo);
+}
+
+.painel-app .olho:focus-visible {
+  outline: 2px solid var(--ceu);
+}
+
+.painel-app .erro-login {
+  margin: -4px 0 12px;
+  min-height: 1.2em;
+  color: #b42323;
+  font-size: .85rem;
+}
+
+.painel-app .caixa-login button.entrar[type="submit"] {
+  width: 100%;
+  height: 48px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--ceu);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.painel-app .caixa-login button.entrar[type="submit"]:hover {
+  background: var(--marca);
+}
+
+.painel-app .caixa-login button.entrar[type="submit"]:disabled {
+  opacity: .7;
+  cursor: default;
+}
+
+.painel-app .login-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--tinta-2);
+  font-size: .78rem;
+  text-align: center;
+}
+
+.painel-app .login-rodape svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--ceu);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 480px) {
+  .painel-app .caixa-login {
+    padding: 26px 22px 30px;
+  }
+}
+
+.painel-app .erro {
+  color: #b42323;
+  min-height: 1.2em;
+}
+
+.painel-app .sair {
+  background: transparent;
+  color: var(--marca);
+  border: 1px solid var(--marca);
+  border-radius: 4px;
+  padding: 6px 14px;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.painel-app .sair:hover {
+  background: var(--fundo);
+}
+
+/* ---------- solicitações de vistoria ---------- */
+.painel-app .ponto.vistoria {
+  background: var(--ceu);
+}
+
+.painel-app .cab-vist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.painel-app .cab-vist h2 {
+  margin: 0;
+}
+
+.painel-app .contador {
+  background: var(--marca);
+  color: #fff;
+  border-radius: 999px;
+  font-size: .75rem;
+  padding: 2px 8px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.painel-app .check-mapa {
+  font-size: .8rem;
+  color: var(--tinta-2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.painel-app .filtros {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.painel-app .filtros button {
+  font: inherit;
+  font-size: .8rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid var(--linha);
+  background: var(--cartao);
+  color: var(--tinta);
+}
+
+.painel-app .filtros button[aria-pressed="true"] {
+  background: var(--marca);
+  color: #fff;
+  border-color: var(--marca);
+}
+
+.painel-app .selo-status {
+  font-size: .72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.painel-app .st-nova {
+  background: #dbe9fb;
+  color: #0a3a73;
+}
+
+.painel-app .st-em_analise {
+  background: #fbeacb;
+  color: #6b4300;
+}
+
+.painel-app .st-concluida {
+  background: #e4ebf3;
+  color: #3d5068;
+}
+
+.painel-app .vars-1 {
+  grid-template-columns: 1fr;
+}
+
+.painel-app .vars-1 b {
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.painel-app .vars a {
+  color: var(--marca);
+}
+
+.painel-app .rot-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.painel-app .rot-status select {
+  font: inherit;
+  padding: 6px 8px;
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+}
+
+.painel-app #lista-vist .dica {
+  padding: 6px 2px;
+}
+
+.painel-app .legenda {
+  flex-wrap: wrap;
+  max-width: calc(100% - 24px);
+  row-gap: 4px;
+}
+
+/* ---------- marca do site: barra azul acima dos títulos de seção ---------- */
+.painel-app .lateral>section>h2::before,
+.painel-app .cab-vist h2::before {
+  content: "";
+  display: block;
+  width: 2.2rem;
+  height: 3px;
+  margin-bottom: .5rem;
+  background: var(--ceu);
+}
+
+.painel-app .nivel-bloco .nivel {
+  font-family: "Space Grotesk", "IBM Plex Sans", sans-serif;
+}
+
+.painel-app .resumo .num {
+  font-family: "Space Grotesk", "IBM Plex Sans", sans-serif;
+}
+
+@media (max-width: 900px) {
+  .painel-app .faixa-topo {
+    padding: 7px 16px;
+  }
+}
+
+/* câmera da encosta */
+.painel-app .camera {
+  margin: 0 0 12px;
+}
+
+.painel-app .camera img {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--linha);
+  background: var(--fundo);
+}
+
+.painel-app .camera button,
+.painel-app #btn-chuva {
+  background: transparent;
+  color: var(--marca);
+  border: 1px solid var(--marca);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.painel-app .camera button {
+  margin-top: 8px;
+}
+
+.painel-app .camera button:hover,
+.painel-app #btn-chuva:hover {
+  background: var(--fundo);
+}
+
+.painel-app .lona {
+  margin-top: 8px;
+}

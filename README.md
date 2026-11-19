@@ -62,7 +62,7 @@ O mapa abre centralizado na região metropolitana do Recife. Um clique no mapa g
 
 Escolher uma área na lista também abre o formulário, com município, nome do local e coordenadas daquela área. O mapa não desenha os níveis de risco; essa informação aparece só na seção de alertas.
 
-O envio do formulário está em `InspectionModal.tsx`. Hoje ele só escreve os dados no console do navegador. O ponto para ligar uma API está marcado com `TODO` na função `submit`.
+O envio do formulário está em `InspectionModal.tsx` e vai para `POST /api/vistorias` do backend. No desenvolvimento o Vite encaminha `/api` para `http://127.0.0.1:8000`. Para publicar o site, defina `VITE_API_URL` com o endereço da API (veja `.env.example`). O painel do administrador fica em `#acesso-admin`.
 
 ## Onde alterar o conteúdo
 

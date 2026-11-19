@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiMenu, FiPhone, FiX } from "react-icons/fi";
+import { FiMenu, FiPhone, FiX, FiLogIn } from "react-icons/fi";
 import type { InspectionPrefill } from "../types";
 
 const links = [
@@ -12,14 +12,21 @@ const links = [
 
 export function Logo({ dark = false }: { dark?: boolean }) {
   return (
-    <a href="#topo" className={`flex min-w-0 items-center gap-2.5 font-display text-xl font-bold sm:text-2xl ${dark ? "text-navy" : "text-white"}`}>
+    <a
+      href="#topo"
+      className={`flex min-w-0 items-center gap-2.5 font-display text-xl font-bold sm:text-2xl ${dark ? "text-navy" : "text-white"}`}
+    >
       <img src="/logoIcone.png" alt="" className="h-10 w-10 shrink-0" />
       <span className="truncate">Encosta Ai</span>
     </a>
   );
 }
 
-export default function Header({ onRequest }: { onRequest: (p?: InspectionPrefill) => void }) {
+export default function Header({
+  onRequest,
+}: {
+  onRequest: (p?: InspectionPrefill) => void;
+}) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
@@ -27,21 +34,66 @@ export default function Header({ onRequest }: { onRequest: (p?: InspectionPrefil
     <header id="topo" className="sticky top-0 z-30 shadow-sm">
       <div className="bg-navy text-[13px] text-white/90">
         <div className="page flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-1.5">
-          <span className="hidden sm:block">Monitoramento geotécnico de encostas e barreiras</span>
-          <span className="flex min-w-0 items-center gap-2"><FiPhone className="shrink-0" aria-hidden /> Emergência: Defesa Civil 199 · Bombeiros 193</span>
+          <span className="hidden sm:block">
+            Monitoramento geotécnico de encostas e barreiras
+          </span>
+          <span className="flex min-w-0 items-center gap-2">
+            <FiPhone className="shrink-0" aria-hidden />
+            Emergência: Defesa Civil 199 · Bombeiros 193
+          </span>
         </div>
       </div>
+
       <div className="border-b border-line bg-white">
         <div className="page flex h-16 items-center justify-between gap-3 sm:h-18">
           <Logo dark />
-          <nav className="hidden items-center gap-7 xl:flex" aria-label="Principal">
+
+          <nav
+            className="hidden items-center gap-7 xl:flex"
+            aria-label="Principal"
+          >
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="text-[15px] font-medium text-navy hover:text-sky">{l.label}</a>
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-[15px] font-medium text-navy hover:text-sky"
+              >
+                {l.label}
+              </a>
             ))}
-            <button className="btn btn-primary" onClick={() => onRequest()}>Solicitar vistoria</button>
+
+
+            <button
+              className="btn btn-primary"
+              onClick={() => onRequest()}
+            >
+              Solicitar vistoria
+            </button>
+            <a
+              href="#acesso-admin"
+              className="inline-flex items-center gap-2 rounded-sm border border-navy px-4 py-2.5 text-sm font-semibold text-navy transition hover:bg-navy hover:text-white"
+            >
+              <FiLogIn />
+              Login
+            </a>
           </nav>
+
           <div className="flex items-center gap-2 xl:hidden">
-            <button className="btn btn-primary hidden px-3 py-2 sm:inline-flex" onClick={() => onRequest()}>Solicitar vistoria</button>
+
+            <button
+              className="btn btn-primary hidden px-3 py-2 sm:inline-flex"
+              onClick={() => onRequest()}
+            >
+              Solicitar vistoria
+            </button>
+            <a
+              href="#acesso-admin"
+              className="hidden items-center gap-1.5 rounded-sm border border-navy px-3 py-2 text-sm font-semibold text-navy transition hover:bg-navy hover:text-white sm:inline-flex"
+            >
+              <FiLogIn />
+              Login
+            </a>
+
             <button
               type="button"
               className="grid size-11 cursor-pointer place-items-center rounded-sm text-2xl text-navy"
@@ -54,12 +106,45 @@ export default function Header({ onRequest }: { onRequest: (p?: InspectionPrefil
             </button>
           </div>
         </div>
-        <nav id="menu-mobile" hidden={!open} className="border-t border-line xl:hidden" aria-label="Principal">
+
+        <nav
+          id="menu-mobile"
+          hidden={!open}
+          className="border-t border-line xl:hidden"
+          aria-label="Principal"
+        >
           <div className="page grid gap-1 py-3">
             {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={close} className="rounded-sm px-2 py-3 text-[15px] font-medium text-navy hover:bg-surface">{l.label}</a>
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={close}
+                className="rounded-sm px-2 py-3 text-[15px] font-medium text-navy hover:bg-surface"
+              >
+                {l.label}
+              </a>
             ))}
-            <button className="btn btn-primary mt-2 w-full sm:hidden" onClick={() => { close(); onRequest(); }}>Solicitar vistoria</button>
+
+            <button
+              className="btn btn-primary mt-2 w-full sm:hidden"
+              onClick={() => {
+                close();
+                onRequest();
+              }}
+            >
+              Solicitar vistoria
+            </button>
+
+            <a
+              href="#acesso-admin"
+              onClick={close}
+              className="mt-2 flex items-center justify-center gap-2 rounded-sm border border-navy px-4 py-3 font-semibold text-navy transition hover:bg-navy hover:text-white"
+            >
+              <FiLogIn />
+              Login
+            </a>
+
+
           </div>
         </nav>
       </div>

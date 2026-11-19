@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
+import PainelAdmin from "./components/PainelAdmin";
 import Hero from "./components/Hero";
 import Indicators from "./components/Indicators";
 import About from "./components/About";
@@ -12,10 +13,21 @@ import InspectionModal from "./components/InspectionModal";
 import Footer from "./components/Footer";
 import type { InspectionPrefill } from "./types";
 
+const ADMIN_HASH = "#acesso-admin";
+
 export default function App() {
   const [modal, setModal] = useState<{ key: number; prefill: InspectionPrefill } | null>(null);
+  const [hash, setHash] = useState(() => window.location.hash);
   const openInspection = (prefill: InspectionPrefill = {}) =>
     setModal({ key: Date.now(), prefill });
+
+  useEffect(() => {
+    const sync = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
+
+  if (hash === ADMIN_HASH) return <PainelAdmin />;
 
   return (
     <>

@@ -57,6 +57,11 @@ interface Props { prefill: InspectionPrefill; onClose: () => void }
 
 export default function InspectionModal({ prefill, onClose }: Props) {
   const [nome, setNome] = useState<string | null>(null);
+  const [protocolo, setProtocolo] = useState<number | null>(null);
+  const [local, setLocal] = useState<{ lat: number; lng: number } | null>(
+    prefill.lat !== undefined && prefill.lng !== undefined ? { lat: prefill.lat, lng: prefill.lng } : null
+  );
+  const [msgLocal, setMsgLocal] = useState("");
   const [erro, setErro] = useState("");
   const [enviando, setEnviando] = useState(false);
 
@@ -67,13 +72,23 @@ export default function InspectionModal({ prefill, onClose }: Props) {
     return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
   }, [onClose]);
 
+  const usarMinhaLocalizacao = () => {
+    if (!navigator.geolocation) { setMsgLocal("Seu navegador não permite obter a localização."); return; }
+    setMsgLocal("Obtendo localização…");
+    navigator.geolocation.getCurrentPosition(
+      (pos) => { setLocal({ lat: pos.coords.latitude, lng: pos.coords.longitude }); setMsgLocal(""); },
+      () => setMsgLocal("Não foi possível obter a localização. Permita o acesso no navegador ou escolha o ponto no mapa."),
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  };
+
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget));
     setErro("");
     setEnviando(true);
     try {
-      await api("/api/vistorias", {
+      const resp = await api<{ ok: boolean; protocolo?: number }>("/api/vistorias", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -84,10 +99,13 @@ export default function InspectionModal({ prefill, onClose }: Props) {
           tipo: data.tipo,
           endereco: String(data.endereco ?? "").trim(),
           descricao: String(data.descricao ?? "").trim() || null,
+          latitude: local ? local.lat : null,
+          longitude: local ? local.lng : null,
           consentimento: data.consentimento === "on",
           site: String(data.site ?? ""),
         }),
       });
+      setProtocolo(resp.protocolo ?? null);
       setNome(String(data.nome).split(" ")[0]);
     } catch (err) {
       setErro(err instanceof ApiError ? err.message : "Não foi possível enviar a solicitação.");
@@ -104,6 +122,7 @@ export default function InspectionModal({ prefill, onClose }: Props) {
             <FiCheckCircle className="mx-auto text-5xl text-risk-low" aria-hidden />
             <h2 className="mt-3 text-2xl">Solicitação enviada</h2>
             <p className="mt-2 mb-6 text-muted">Obrigado, {nome}. Recebemos seu pedido e entraremos em contato para agendar a vistoria.</p>
+            {protocolo !== null && <p className="-mt-3 mb-6 font-semibold">Número de protocolo: #{protocolo}</p>}
             <button className="btn btn-primary" onClick={onClose}>Fechar</button>
           </div>
         ) : (
@@ -122,6 +141,21 @@ export default function InspectionModal({ prefill, onClose }: Props) {
               </label>
             </div>
             <label className="grid gap-1 text-sm font-semibold">Endereço ou ponto de referência<input name="endereco" required defaultValue={prefill.local} className="field" /></label>
+            <div className="grid gap-1.5 text-sm">
+              <span className="font-semibold">Localização no mapa</span>
+              {local ? (
+                <p className="flex flex-wrap items-center gap-3 text-muted">
+                  Ponto anexado ({local.lat.toFixed(5)}, {local.lng.toFixed(5)}). Ele aparece no mapa da Defesa Civil.
+                  <button type="button" className="cursor-pointer font-semibold text-brand underline" onClick={() => setLocal(null)}>Remover</button>
+                </p>
+              ) : (
+                <div className="flex flex-wrap items-center gap-3">
+                  <button type="button" className="btn border border-line text-ink hover:bg-surface" onClick={usarMinhaLocalizacao}>Usar minha localização</button>
+                  <span className="text-muted">Opcional. Sem ela, a solicitação chega ao painel, mas não aparece no mapa.</span>
+                </div>
+              )}
+              {msgLocal && <p role="status" className="text-muted">{msgLocal}</p>}
+            </div>
             <label className="grid gap-1 text-sm font-semibold">O que você observa? (rachaduras, água saindo, deslizamentos)<textarea name="descricao" rows={3} maxLength={1000} className="field" /></label>
             <label className="flex items-start gap-2 text-sm">
               <input name="consentimento" type="checkbox" required className="mt-1" />

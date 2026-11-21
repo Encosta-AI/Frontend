@@ -740,7 +740,7 @@ function Painel({ onSair }: { onSair: () => void }) {
                   }}>
                     <span className="info">
                       <div className="nome">#{v.id} · {v.nome}</div>
-                      <div className="local">{v.cidade} · {v.tipo} · {dataHora(v.criado_em)}</div>
+                      <div className="local">{v.cidade} · {v.tipo} · {dataHora(v.criado_em)}{v.latitude === null ? " · sem localização no mapa" : ""}</div>
                     </span>
                     <span className={`selo-status st-${v.status}`}>{ROT_STATUS[v.status]}</span>
                   </button>

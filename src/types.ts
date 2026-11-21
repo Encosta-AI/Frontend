@@ -16,4 +16,6 @@ export interface Area {
 export interface InspectionPrefill {
   local?: string;
   cidade?: string;
+  lat?: number;
+  lng?: number;
 }

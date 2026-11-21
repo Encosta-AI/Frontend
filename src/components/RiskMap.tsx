@@ -116,7 +116,7 @@ export default function RiskMap({ onRequest }: { onRequest: (p?: InspectionPrefi
                   {atual.cidade} · {atual.tipo} · {atual.sensores} sensores ativos · última leitura {atual.leitura}
                 </p>
               </div>
-              <button className="btn btn-primary w-full sm:w-auto" onClick={() => onRequest({ local: atual.nome, cidade: atual.cidade })}>Solicitar vistoria neste local</button>
+              <button className="btn btn-primary w-full sm:w-auto" onClick={() => onRequest({ local: atual.nome, cidade: atual.cidade, lat: atual.lat, lng: atual.lng })}>Solicitar vistoria neste local</button>
             </>
           ) : clique ? (
             <>
@@ -126,7 +126,7 @@ export default function RiskMap({ onRequest }: { onRequest: (p?: InspectionPrefi
                   Ponto marcado no mapa. Você pode solicitar a vistoria para este local.
                 </p>
               </div>
-              <button className="btn btn-primary w-full sm:w-auto" onClick={() => onRequest()}>Solicitar vistoria neste ponto</button>
+              <button className="btn btn-primary w-full sm:w-auto" onClick={() => onRequest({ lat: clique.lat, lng: clique.lng })}>Solicitar vistoria neste ponto</button>
             </>
           ) : (
             <p className="text-muted">Selecione um ponto na lista ou clique no mapa para escolher o local da vistoria.</p>
